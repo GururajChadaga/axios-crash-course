@@ -182,7 +182,7 @@ function cancelToken() {
   const source = axios.CancelToken.source();
   axios
     .get("https://jsonplaceholder.typicode.com/todos", {
-      cancelToken: source.token
+      cancelToken: source.token,
     })
     .then((res) => showOutput(res))
     .catch((thrown) => {
@@ -191,8 +191,9 @@ function cancelToken() {
       }
     });
 
-    if(true) { // some condition where the request must be cancelled
-      source.cancel('Cancel message')
+  if (true) {
+    // some condition where the request must be cancelled
+    source.cancel("Cancel message");
   }
 }
 
@@ -217,13 +218,15 @@ function useInstance() {
     baseURL: "https://jsonplaceholder.typicode.com",
   });
 
-  axiosInstance.get("/comments", {
-    params: {
-      _limit: 5
-    }
-  }).then((res) => {
-    showOutput(res);
-  });
+  axiosInstance
+    .get("/comments", {
+      params: {
+        _limit: 5,
+      },
+    })
+    .then((res) => {
+      showOutput(res);
+    });
 }
 
 // Show output in browser
