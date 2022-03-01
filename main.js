@@ -193,7 +193,7 @@ function cancelToken() {
 
     if(true) { // some condition where the request must be cancelled
       source.cancel('Cancel message')
-    } 
+  }
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
@@ -212,6 +212,19 @@ axios.interceptors.request.use(
 );
 
 // AXIOS INSTANCES
+function useInstance() {
+  const axiosInstance = axios.create({
+    baseURL: "https://jsonplaceholder.typicode.com",
+  });
+
+  axiosInstance.get("/comments", {
+    params: {
+      _limit: 5
+    }
+  }).then((res) => {
+    showOutput(res);
+  });
+}
 
 // Show output in browser
 function showOutput(res) {
@@ -262,3 +275,4 @@ document
   .addEventListener("click", transformResponse);
 document.getElementById("error").addEventListener("click", errorHandling);
 document.getElementById("cancel").addEventListener("click", cancelToken);
+document.getElementById("instance").addEventListener("click", useInstance);
