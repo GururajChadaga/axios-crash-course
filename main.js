@@ -124,10 +124,14 @@ function customHeaders() {
     },
   };
   axios
-    .post("https://jsonplaceholder.typicode.com/todos", {
-      title: "New TODO",
-      completed: false,
-    }, config)
+    .post(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        title: "New TODO",
+        completed: false,
+      },
+      config
+    )
     .then((res) => showOutput(res))
     .catch((err) => {
       console.log(err);
