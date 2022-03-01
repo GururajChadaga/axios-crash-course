@@ -67,9 +67,33 @@ function removeTodo() {
     .catch((err) => console.log(err));
 }
 
-// SIMULTANEOUS DATA
+// MULTIPLE DATA
 function getData() {
-  console.log("Simultaneous Request");
+  // axios
+  //   .all([
+  //     axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+  //     axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5"),
+  //   ])
+  //   .then((res) => {
+  //     console.log(res[0]);
+  //     console.log(res[1]);
+  //     showOutput(res[1]);
+  //   })
+  //   .catch((err) => console.log(err));
+
+  axios
+    .all([
+      axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+      axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5"),
+    ])
+    .then(
+      axios.spread((todos, posts) => {
+        console.log(todos);
+        console.log(posts);
+        showOutput(posts);
+      })
+    )
+    .catch((err) => console.log(err));
 }
 
 // CUSTOM HEADERS
@@ -138,7 +162,7 @@ document.getElementById("post").addEventListener("click", addTodo);
 document.getElementById("put").addEventListener("click", updateTodoPut);
 document.getElementById("patch").addEventListener("click", updateTodoPatch);
 document.getElementById("delete").addEventListener("click", removeTodo);
-document.getElementById("sim").addEventListener("click", getData);
+document.getElementById("mul").addEventListener("click", getData);
 document.getElementById("headers").addEventListener("click", customHeaders);
 document
   .getElementById("transform")
