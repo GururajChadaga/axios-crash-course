@@ -39,8 +39,24 @@ function addTodo() {
 }
 
 // PUT/PATCH REQUEST
-function updateTodo() {
-  console.log("PUT/PATCH Request");
+function updateTodoPut() {
+  axios
+    .put("https://jsonplaceholder.typicode.com/todos/1", {
+      title: "New TODO",
+      completed: true,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
+}
+
+function updateTodoPatch() {
+  axios
+    .patch("https://jsonplaceholder.typicode.com/todos/1", {
+      title: "New TODO",
+      completed: true,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
 }
 
 // DELETE REQUEST
@@ -116,7 +132,8 @@ function showOutput(res) {
 // Event listeners
 document.getElementById("get").addEventListener("click", getTodos);
 document.getElementById("post").addEventListener("click", addTodo);
-document.getElementById("update").addEventListener("click", updateTodo);
+document.getElementById("put").addEventListener("click", updateTodoPut);
+document.getElementById("patch").addEventListener("click", updateTodoPatch);
 document.getElementById("delete").addEventListener("click", removeTodo);
 document.getElementById("sim").addEventListener("click", getData);
 document.getElementById("headers").addEventListener("click", customHeaders);
