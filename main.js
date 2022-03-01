@@ -1,5 +1,5 @@
 //AXIOS GLOBALS
-axios.defaults.headers.common['X-Auth-Token'] = 'some-token'
+axios.defaults.headers.common["X-Auth-Token"] = "some-token";
 
 // GET REQUEST
 function getTodos() {
@@ -161,7 +161,20 @@ function transformResponse() {
 
 // ERROR HANDLING
 function errorHandling() {
-  console.log("Error Handling");
+  axios
+    .get("https://jsonplaceholder.typicode.com/todoss")
+    .then((res) => showOutput(res))
+    .catch((err) => {
+      if (err.response) {
+        // Server responded with a status other than 200 range
+        console.log(err.response);
+      } else if (err.request) {
+        // Request was made but no response
+        console.error(err.request);
+      } else {
+        console.error(err.message);
+      }
+    });
 }
 
 // CANCEL TOKEN
