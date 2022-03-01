@@ -98,7 +98,40 @@ function getData() {
 
 // CUSTOM HEADERS
 function customHeaders() {
-  console.log("Custom Headers");
+  // axios({
+  //   method: "post",
+  //   url: "https://jsonplaceholder.typicode.com/todos",
+  //   data: {
+  //         title: "New TODO",
+  //         completed: false,
+  //       },
+  //   headers:{
+  //     'Content-Type': 'application/json',
+  //     Authorization: 'some-token'
+  //   }
+  // })
+  //   .then((res) => {
+  //     showOutput(res);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "some-token",
+    },
+  };
+  axios
+    .post("https://jsonplaceholder.typicode.com/todos", {
+      title: "New TODO",
+      completed: false,
+    }, config)
+    .then((res) => showOutput(res))
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 // TRANSFORMING REQUESTS & RESPONSES
