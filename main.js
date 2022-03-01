@@ -136,7 +136,20 @@ function customHeaders() {
 
 // TRANSFORMING REQUESTS & RESPONSES
 function transformResponse() {
-  console.log("Transform Response");
+  axios({
+    method: "post",
+    url: "https://jsonplaceholder.typicode.com/todos",
+    data: {
+      title: "New Todo",
+      completed: false,
+    },
+    transformResponse: axios.defaults.transformResponse.concat((data) => {
+      data.title = data.title.toUpperCase();
+      return data;
+    }),
+  })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
 }
 
 // ERROR HANDLING
