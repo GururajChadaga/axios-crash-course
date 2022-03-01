@@ -19,7 +19,23 @@ function getTodos() {
 
 // POST REQUEST
 function addTodo() {
-  console.log("POST Request");
+  // axios({
+  //   method: "post",
+  //   url: "https://jsonplaceholder.typicode.com/todos",
+  //   data: {
+  //     title: "New TODO",
+  //     completed: false,
+  //   },
+  // })
+  //   .then((res) => showOutput(res))
+  //   .catch((err) => console.log(err));
+  axios
+    .post("https://jsonplaceholder.typicode.com/todos", {
+      title: "New TODO",
+      completed: false,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
 }
 
 // PUT/PATCH REQUEST
